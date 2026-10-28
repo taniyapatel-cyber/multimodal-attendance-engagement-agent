@@ -1,0 +1,96 @@
+{
+  "name": "EngagementSample",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string"
+    },
+    "interval_start": {
+      "type": "number"
+    },
+    "interval_end": {
+      "type": "number"
+    },
+    "attention_score": {
+      "type": "number"
+    },
+    "movement_score": {
+      "type": "number"
+    },
+    "inactivity_minutes": {
+      "type": "number",
+      "default": 0
+    },
+    "audio_activity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "medium"
+    },
+    "engagement": {
+      "type": "number"
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "session_id",
+    "attention_score",
+    "movement_score",
+    "engagement"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
